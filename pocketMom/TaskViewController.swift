@@ -12,6 +12,7 @@ class TaskViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var task : Task?
     var tasks = [Task]() {
         didSet {
             self.tableView.reloadData()
@@ -21,6 +22,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        self.setupTableView()
         self.update()
     }
 
@@ -84,6 +86,7 @@ class TaskViewController: UIViewController {
     func loadTasks() -> [Task]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Task.ArchiveURL.path!) as? [Task]
     }
+    
 }
 
 extension TaskViewController: Setup {
@@ -95,6 +98,14 @@ extension TaskViewController: Setup {
     func setupAppearance() {
         //
     }
+    
+    func setupTableView() {
+        self.tableView.registerNib(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "customTaskCell")
+        self.tableView.dataSource = self
+        
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+    }
 }
 
 extension TaskViewController: UITableViewDataSource {
@@ -104,9 +115,10 @@ extension TaskViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath)
-        let task = self.tasks[indexPath.row]
-        cell.textLabel?.text = task.text
+        let cell = tableView.dequeueReusableCellWithIdentifier("customTaskCell", forIndexPath: indexPath) as! TaskTableViewCell
+        cell.task = self.tasks[indexPath.row]
+
         return cell
     }
+    
 }

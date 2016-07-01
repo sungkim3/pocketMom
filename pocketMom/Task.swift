@@ -12,10 +12,12 @@ import UIKit
 class Task: NSObject, NSCoding{
     let text: String
     var completed: Bool
+    var counter: Int?
     
     init?(text: String) {
         self.text = text
         self.completed = false
+        self.counter = nil
         
         super.init()
         

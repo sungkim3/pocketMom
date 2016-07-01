@@ -14,6 +14,11 @@
 		148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */; };
 		1485521B1D25B98E00A7008D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485521A1D25B98E00A7008D /* Task.swift */; };
 		148552201D25C82A00A7008D /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485521F1D25C82A00A7008D /* Setup.swift */; };
+		148552231D25FD5000A7008D /* checked_box.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 148552221D25FD5000A7008D /* checked_box.jpeg */; };
+		148552251D25FD5700A7008D /* unchecked_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 148552241D25FD5700A7008D /* unchecked_box.png */; };
+		148552281D25FD8C00A7008D /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552271D25FD8C00A7008D /* Checkbox.swift */; };
+		1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552291D26000100A7008D /* TaskTableViewCell.swift */; };
+		1485522C1D26000100A7008D /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1485522A1D26000100A7008D /* TaskTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		148552111D25B6CE00A7008D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1485521A1D25B98E00A7008D /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		1485521F1D25C82A00A7008D /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
+		148552221D25FD5000A7008D /* checked_box.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checked_box.jpeg; sourceTree = "<group>"; };
+		148552241D25FD5700A7008D /* unchecked_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked_box.png; sourceTree = "<group>"; };
+		148552271D25FD8C00A7008D /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
+		148552291D26000100A7008D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		1485522A1D26000100A7008D /* TaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,7 @@
 				148552181D25B89900A7008D /* Controller */,
 				1485521C1D25B9B700A7008D /* Model */,
 				148552191D25B8A000A7008D /* View */,
+				148552261D25FD6200A7008D /* Assets */,
 				148552211D25C83000A7008D /* Protocol */,
 			);
 			path = pocketMom;
@@ -88,6 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				148552091D25B6CD00A7008D /* Main.storyboard */,
+				148552291D26000100A7008D /* TaskTableViewCell.swift */,
+				1485522A1D26000100A7008D /* TaskTableViewCell.xib */,
+				148552271D25FD8C00A7008D /* Checkbox.swift */,
 				1485520C1D25B6CD00A7008D /* Assets.xcassets */,
 				1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */,
 			);
@@ -108,6 +122,15 @@
 				1485521F1D25C82A00A7008D /* Setup.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		148552261D25FD6200A7008D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				148552221D25FD5000A7008D /* checked_box.jpeg */,
+				148552241D25FD5700A7008D /* unchecked_box.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,9 +191,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1485522C1D26000100A7008D /* TaskTableViewCell.xib in Resources */,
 				148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */,
 				1485520D1D25B6CD00A7008D /* Assets.xcassets in Resources */,
 				1485520B1D25B6CD00A7008D /* Main.storyboard in Resources */,
+				148552251D25FD5700A7008D /* unchecked_box.png in Resources */,
+				148552231D25FD5000A7008D /* checked_box.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +209,10 @@
 			files = (
 				148552081D25B6CC00A7008D /* TaskViewController.swift in Sources */,
 				1485521B1D25B98E00A7008D /* Task.swift in Sources */,
+				1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */,
 				148552061D25B6CC00A7008D /* AppDelegate.swift in Sources */,
 				148552201D25C82A00A7008D /* Setup.swift in Sources */,
+				148552281D25FD8C00A7008D /* Checkbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
