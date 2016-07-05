@@ -73,23 +73,23 @@ extension SettingsViewController: Setup {
     
     func saveButtonClicked (sender: UIBarButtonItem) {
         print("clicked")
-        let formatter = NSDateFormatter()
-        let timeZone = NSTimeZone(name: "UTC")
-        formatter.timeZone = timeZone
-        if let startText = self.startTextField.text {
-            print(startText)
-            if let startTime = formatter.dateFromString(startText) {
-                print(startTime)
-                self.notificationDates.append(NotificationDate(notificationTime: startTime))
-                NotificationDate.composeNSDate()
-            }
-        }
-        if let endText = self.endTextField.text {
-            if let endTime = formatter.dateFromString(endText) {
-                self.notificationDates.append(NotificationDate(notificationTime: endTime))
-            }
-        }
-        
+//        let formatter = NSDateFormatter()
+//        let timeZone = NSTimeZone(name: "UTC")
+//        formatter.timeZone = timeZone
+//        if let startText = self.startTextField.text {
+//            print(startText)
+//            if let startTime = formatter.dateFromString(startText) {
+//                print(startTime)
+//                self.notificationDates.append(NotificationDate(notificationTime: startTime))
+//
+//            }
+//        }
+//        if let endText = self.endTextField.text {
+//            if let endTime = formatter.dateFromString(endText) {
+//                self.notificationDates.append(NotificationDate(notificationTime: endTime))
+//            }
+//        }
+//        NotificationDate.composeNotificationDate()
     }
 }
 

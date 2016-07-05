@@ -12,17 +12,10 @@ class TaskViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var tasks = [Task]() {
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
         self.setupTableView()
-        self.update()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,9 +35,8 @@ class TaskViewController: UIViewController {
             print("Entered Task: \(textField.text)")
             if let taskText = textField.text {
                 if let newTask = Task(text: String(taskText)) {
-                    self.tasks.append(newTask)
-                    self.saveTasks()
-                    self.update()
+                    TaskManager.shared.tasks.append(newTask)
+                   self.tableView.reloadData()
                 }
             }
         })
@@ -56,15 +48,6 @@ class TaskViewController: UIViewController {
         
         alertController.view.setNeedsLayout()
         self.presentViewController(alertController, animated: true, completion: nil)
-    }
-    
-    func update() {
-        if let savedTasks = loadTasks() {
-            if self.tasks.isEmpty {
-                self.tasks += savedTasks
-            }
-        }
-        self.loadTasks()
     }
 }
 
@@ -84,37 +67,21 @@ extension TaskViewController: Setup {
         
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.reloadData()
     }
 }
 
 extension TaskViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tasks.count
+        
+        return TaskManager.shared.tasks.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customTaskCell", forIndexPath: indexPath) as! TaskTableViewCell
-        cell.task = self.tasks[indexPath.row]
+        cell.task = TaskManager.shared.tasks[indexPath.row]
         return cell
     }
     
-}
-
-//MARK: NSCODING
-extension TaskViewController {
-
-    func saveTasks() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path!)
-        
-        if !isSuccessfulSave {
-            print("Failed to save tasks...")
-        } else {
-            print("Saved successfully!")
-        }
-    }
-    
-    func loadTasks() -> [Task]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Task.ArchiveURL.path!) as? [Task]
-    }
 }

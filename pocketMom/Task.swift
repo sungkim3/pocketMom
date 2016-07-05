@@ -9,10 +9,17 @@
 import UIKit
 
 
-class Task: NSObject, NSCoding{
+class Task: NSObject, NSCoding {
     var text: String
     var completed: Bool
     var counter: Int
+    var createdAt: Int {
+            let createdDate = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let dayComponent = calendar.component(.Day, fromDate: createdDate)
+            return dayComponent
+    }
+    
     
     init?(text: String) {
         self.text = text
@@ -41,7 +48,6 @@ class Task: NSObject, NSCoding{
     
     //MARK: ARCHIVING PATHS
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    
     static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("tasks")
     
 }
