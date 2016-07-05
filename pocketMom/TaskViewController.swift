@@ -12,7 +12,6 @@ class TaskViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var task : Task?
     var tasks = [Task]() {
         didSet {
             self.tableView.reloadData()
@@ -44,10 +43,6 @@ class TaskViewController: UIViewController {
             if let taskText = textField.text {
                 if let newTask = Task(text: String(taskText)) {
                     self.tasks.append(newTask)
-                    for task in self.tasks {
-                        print(task.text)
-                    }
-                    print(self.tasks)
                     self.saveTasks()
                     self.update()
                 }
@@ -65,28 +60,12 @@ class TaskViewController: UIViewController {
     
     func update() {
         if let savedTasks = loadTasks() {
-            self.tasks += savedTasks
+            if self.tasks.isEmpty {
+                self.tasks += savedTasks
+            }
         }
-        
         self.loadTasks()
     }
-    
-    //MARK: NSCODING
-    
-    func saveTasks() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path!)
-        
-        if !isSuccessfulSave {
-            print("Failed to save tasks...")
-        } else {
-            print("Saved successfully!")
-        }
-    }
-    
-    func loadTasks() -> [Task]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Task.ArchiveURL.path!) as? [Task]
-    }
-    
 }
 
 extension TaskViewController: Setup {
@@ -117,8 +96,25 @@ extension TaskViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customTaskCell", forIndexPath: indexPath) as! TaskTableViewCell
         cell.task = self.tasks[indexPath.row]
-
         return cell
     }
     
+}
+
+//MARK: NSCODING
+extension TaskViewController {
+
+    func saveTasks() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path!)
+        
+        if !isSuccessfulSave {
+            print("Failed to save tasks...")
+        } else {
+            print("Saved successfully!")
+        }
+    }
+    
+    func loadTasks() -> [Task]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Task.ArchiveURL.path!) as? [Task]
+    }
 }

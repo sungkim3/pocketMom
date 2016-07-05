@@ -10,14 +10,14 @@ import UIKit
 
 
 class Task: NSObject, NSCoding{
-    let text: String
+    var text: String
     var completed: Bool
-    var counter: Int?
+    var counter: Int
     
     init?(text: String) {
         self.text = text
         self.completed = false
-        self.counter = nil
+        self.counter = 0
         
         super.init()
         

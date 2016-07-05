@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		146D6A681D2706E900F920C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146D6A661D2706E900F920C5 /* Main.storyboard */; };
+		146D6A6A1D27159100F920C5 /* NotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D6A691D27159100F920C5 /* NotificationDate.swift */; };
 		148552061D25B6CC00A7008D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552051D25B6CC00A7008D /* AppDelegate.swift */; };
 		148552081D25B6CC00A7008D /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552071D25B6CC00A7008D /* TaskViewController.swift */; };
-		1485520B1D25B6CD00A7008D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 148552091D25B6CD00A7008D /* Main.storyboard */; };
 		1485520D1D25B6CD00A7008D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1485520C1D25B6CD00A7008D /* Assets.xcassets */; };
 		148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */; };
 		1485521B1D25B98E00A7008D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485521A1D25B98E00A7008D /* Task.swift */; };
@@ -19,13 +20,15 @@
 		148552281D25FD8C00A7008D /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552271D25FD8C00A7008D /* Checkbox.swift */; };
 		1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552291D26000100A7008D /* TaskTableViewCell.swift */; };
 		1485522C1D26000100A7008D /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1485522A1D26000100A7008D /* TaskTableViewCell.xib */; };
+		1485522E1D26CB1F00A7008D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485522D1D26CB1F00A7008D /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		146D6A671D2706E900F920C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		146D6A691D27159100F920C5 /* NotificationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDate.swift; sourceTree = "<group>"; };
 		148552021D25B6CC00A7008D /* pocketMom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pocketMom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148552051D25B6CC00A7008D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		148552071D25B6CC00A7008D /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
-		1485520A1D25B6CD00A7008D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1485520C1D25B6CD00A7008D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1485520F1D25B6CD00A7008D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		148552111D25B6CE00A7008D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		148552271D25FD8C00A7008D /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		148552291D26000100A7008D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		1485522A1D26000100A7008D /* TaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
+		1485522D1D26CB1F00A7008D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		148552181D25B89900A7008D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1485522D1D26CB1F00A7008D /* SettingsViewController.swift */,
 				148552071D25B6CC00A7008D /* TaskViewController.swift */,
 			);
 			name = Controller;
@@ -98,11 +103,11 @@
 		148552191D25B8A000A7008D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				148552091D25B6CD00A7008D /* Main.storyboard */,
+				1485520C1D25B6CD00A7008D /* Assets.xcassets */,
+				148552271D25FD8C00A7008D /* Checkbox.swift */,
+				146D6A661D2706E900F920C5 /* Main.storyboard */,
 				148552291D26000100A7008D /* TaskTableViewCell.swift */,
 				1485522A1D26000100A7008D /* TaskTableViewCell.xib */,
-				148552271D25FD8C00A7008D /* Checkbox.swift */,
-				1485520C1D25B6CD00A7008D /* Assets.xcassets */,
 				1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */,
 			);
 			name = View;
@@ -112,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				1485521A1D25B98E00A7008D /* Task.swift */,
+				146D6A691D27159100F920C5 /* NotificationDate.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -194,7 +200,7 @@
 				1485522C1D26000100A7008D /* TaskTableViewCell.xib in Resources */,
 				148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */,
 				1485520D1D25B6CD00A7008D /* Assets.xcassets in Resources */,
-				1485520B1D25B6CD00A7008D /* Main.storyboard in Resources */,
+				146D6A681D2706E900F920C5 /* Main.storyboard in Resources */,
 				148552251D25FD5700A7008D /* unchecked_box.png in Resources */,
 				148552231D25FD5000A7008D /* checked_box.jpeg in Resources */,
 			);
@@ -209,9 +215,11 @@
 			files = (
 				148552081D25B6CC00A7008D /* TaskViewController.swift in Sources */,
 				1485521B1D25B98E00A7008D /* Task.swift in Sources */,
+				1485522E1D26CB1F00A7008D /* SettingsViewController.swift in Sources */,
 				1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */,
 				148552061D25B6CC00A7008D /* AppDelegate.swift in Sources */,
 				148552201D25C82A00A7008D /* Setup.swift in Sources */,
+				146D6A6A1D27159100F920C5 /* NotificationDate.swift in Sources */,
 				148552281D25FD8C00A7008D /* Checkbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,10 +227,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		148552091D25B6CD00A7008D /* Main.storyboard */ = {
+		146D6A661D2706E900F920C5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1485520A1D25B6CD00A7008D /* Base */,
+				146D6A671D2706E900F920C5 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 				148552161D25B6CE00A7008D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
