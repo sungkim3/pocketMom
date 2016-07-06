@@ -29,13 +29,13 @@ class Task: NSObject, NSCoding {
         }
     }
     
-    func getMinute (date: NSDate) -> Int {
+    func getDay (date: NSDate) -> Int {
 
         let calendar = NSCalendar.currentCalendar()
-        //            let dayComponent = calendar.component(.Day, fromDate: createdDate)
-        //            return dayComponent
-        let minuteComponent = calendar.component(.Minute, fromDate: date)
-        return minuteComponent
+        let dayComponent = calendar.component(.Day, fromDate: date)
+        return dayComponent
+//        let minuteComponent = calendar.component(.Minute, fromDate: date)
+//        return minuteComponent
     }
     
     //MARK: NSCODING

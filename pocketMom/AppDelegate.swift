@@ -17,8 +17,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: LOCAL NOTIFICATION 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
-        NotificationDate.composeNotificationDate()
+        NotificationDate.composeStartEndNotificationDate()
+        
+        //every 6 hours
+        application.setMinimumBackgroundFetchInterval(60*60*6)
         return true
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+       
+        //if there is a previously saved date
+        if let previousDate = NSUserDefaults.standardUserDefaults().objectForKey("previousDate") as? NSDate {
+            let currentDate = NSDate()
+            let calendar = NSCalendar.currentCalendar()
+            let previousDayComponent = calendar.component(.Day, fromDate: previousDate)
+            let currentDayComponent = calendar.component(.Day, fromDate: currentDate)
+            
+            //moved into the next day
+            if previousDayComponent != currentDayComponent {
+                //cancel all scheduled localnotifications
+                application.cancelAllLocalNotifications()
+                //schedule notifications based on task object counter property
+                NotificationDate.setNotifications()
+            }
+            let previousDate = currentDate
+            NSUserDefaults.standardUserDefaults().setObject(previousDate, forKey: "previousDate")
+        
+        } else {
+        //if there is no previously saved date (first log in) store the date
+            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"previousDate")
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -26,24 +54,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
-        
-        //current date
         let currentDate = NSDate()
         let calendar = NSCalendar.currentCalendar()
-//        let dayComponent = calendar.component(.Day, fromDate: currentDate)
-        let minuteComponent = calendar.component(.Minute, fromDate: currentDate)
+        let dayComponent = calendar.component(.Day, fromDate: currentDate)
+//        let minuteComponent = calendar.component(.Minute, fromDate: currentDate)
         
         //check previous saved date and todays date (comparing days)
         for task in TaskManager.shared.tasks {
-//            task.counter = dayComponent - task.createdAt
+
 
             if let date = task.createdAt {
-                let minuteAt = task.getMinute(date)
-                task.counter = Int32(minuteComponent - minuteAt)
+                let dayAt = task.getDay(date)
+                task.counter = Int32(dayComponent - dayAt)
+//                task.counter = Int32(minuteComponent - minuteAt)
             }
         }
     }
-//    application.setMinimumBackgroundFetchInterval(60*60*6)
-    
 }
 
