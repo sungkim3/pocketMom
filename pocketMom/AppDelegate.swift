@@ -18,17 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: LOCAL NOTIFICATION 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
-        
-         NotificationDate.composeNotificationDate()
+        NotificationDate.composeNotificationDate()
         
         return true
     }
     
     func applicationWillResignActive(application: UIApplication) {
         TaskManager.shared.saveTasks()
-        
-        //grab a snap shot of the date (today)
-        //dont forget to persist
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -36,12 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //current date
         let currentDate = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let dayComponent = calendar.component(.Day, fromDate: currentDate)
-        
+//        let dayComponent = calendar.component(.Day, fromDate: currentDate)
+        let minuteComponent = calendar.component(.Minute, fromDate: currentDate)
         
         //check previous saved date and todays date (comparing days)
         for task in TaskManager.shared.tasks {
-            task.counter = dayComponent - task.createdAt
+//            task.counter = dayComponent - task.createdAt
+
+            if let date = task.createdAt {
+                let minuteAt = task.getMinute(date)
+                task.counter = Int32(minuteComponent - minuteAt)
+            }
+ 
         }
     }
     

@@ -12,6 +12,10 @@ class TaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var taskLabel: UILabel!
+    @IBOutlet weak var checkBoxButton: UIButton!
+    let uncheckedImage = UIImage(named: "unchecked_box")
+    let checkedImage = UIImage(named: "checked_box.jpeg")
+    
     
     var task: Task! {
         didSet {
@@ -22,6 +26,15 @@ class TaskTableViewCell: UITableViewCell {
             } else {
                 self.countLabel.hidden = false
                 self.countLabel.text = String(self.task.counter)
+            }
+            
+            if self.task.completed == false {
+                checkBoxButton.setImage(uncheckedImage, forState: .Normal)
+            } else {
+                let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: self.task.text)
+                attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+                self.taskLabel.attributedText = attributeString
+                checkBoxButton.setImage(checkedImage, forState: .Normal)
             }
         }
     }
@@ -34,15 +47,17 @@ class TaskTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    @IBAction func checkboxSelected(sender: Checkbox) {
-        if sender.isChecked == false {
+    @IBAction func checkboxSelected(sender: UIButton) {
+        if self.task.completed == false {
             self.task.completed = true
+            sender.setImage(checkedImage, forState: .Normal)
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: self.task.text)
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             self.taskLabel.attributedText = attributeString
         } else {
             self.task.completed = false
             self.taskLabel.text = self.task.text
+            sender.setImage(uncheckedImage, forState: .Normal)
         }
     }
 }

@@ -36,7 +36,7 @@ class TaskViewController: UIViewController {
             if let taskText = textField.text {
                 if let newTask = Task(text: String(taskText)) {
                     TaskManager.shared.tasks.append(newTask)
-                   self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         })
