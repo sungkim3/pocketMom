@@ -13,7 +13,6 @@ class Task: NSObject, NSCoding {
     var text: String
     var completed: Bool
     var counter: Int32
-//    let id: String
     var createdAt: NSDate?
  
 
@@ -22,7 +21,6 @@ class Task: NSObject, NSCoding {
         self.completed = completed
         self.counter = counter
         self.createdAt = createdAt
-//        self.id = NSUUID().UUIDString
         
         super.init()
         

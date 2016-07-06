@@ -104,10 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				1485520C1D25B6CD00A7008D /* Assets.xcassets */,
+				1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */,
 				146D6A661D2706E900F920C5 /* Main.storyboard */,
 				148552291D26000100A7008D /* TaskTableViewCell.swift */,
 				1485522A1D26000100A7008D /* TaskTableViewCell.xib */,
-				1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -171,6 +171,11 @@
 				TargetAttributes = {
 					148552011D25B6CC00A7008D = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

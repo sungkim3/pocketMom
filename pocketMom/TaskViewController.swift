@@ -21,7 +21,6 @@ class TaskViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
     
     @IBAction func addButtonSelected(sender: AnyObject) {
         let alertController = UIAlertController(title: "New Task", message: "Enter new Task", preferredStyle: .Alert)
@@ -42,10 +41,8 @@ class TaskViewController: UIViewController {
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        
         alertController.addAction(addTaskAction)
         alertController.addAction(cancelAction)
-        
         alertController.view.setNeedsLayout()
         self.presentViewController(alertController, animated: true, completion: nil)
     }
@@ -69,12 +66,15 @@ extension TaskViewController: Setup {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.reloadData()
     }
+    
+    func update() {
+        self.tableView.reloadData()
+    }
 }
 
 extension TaskViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return TaskManager.shared.tasks.count
     }
     
@@ -83,5 +83,4 @@ extension TaskViewController: UITableViewDataSource {
         cell.task = TaskManager.shared.tasks[indexPath.row]
         return cell
     }
-    
 }

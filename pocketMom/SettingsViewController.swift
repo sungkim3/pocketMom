@@ -18,8 +18,6 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var startTextField: UITextField!
     @IBOutlet weak var endTextField: UITextField!
     
- 
-    
     var notificationDates = [NotificationDate]()
     
     weak var delegate: SettingsViewControllerDelegate?

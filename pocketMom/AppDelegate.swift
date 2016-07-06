@@ -13,13 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //MARK: LOCAL NOTIFICATION 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
         NotificationDate.composeNotificationDate()
-        
         return true
     }
     
@@ -43,10 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let minuteAt = task.getMinute(date)
                 task.counter = Int32(minuteComponent - minuteAt)
             }
- 
         }
     }
+//    application.setMinimumBackgroundFetchInterval(60*60*6)
     
-
 }
 

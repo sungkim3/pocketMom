@@ -47,6 +47,7 @@ class TaskTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    
     @IBAction func checkboxSelected(sender: UIButton) {
         if self.task.completed == false {
             self.task.completed = true
@@ -59,5 +60,22 @@ class TaskTableViewCell: UITableViewCell {
             self.taskLabel.text = self.task.text
             sender.setImage(uncheckedImage, forState: .Normal)
         }
+        
+        guard let taskViewController = self.window?.rootViewController?.childViewControllers.first as? TaskViewController else { return }
+        let alert = UIAlertController(title: nil, message: "Did you finish your task?", preferredStyle: .Alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) { (action) in
+            TaskManager.shared.tasks.removeAtIndex(TaskManager.shared.tasks.indexOf(self.task)!)
+            taskViewController.update()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            self.task.completed = false
+            self.taskLabel.text = self.task.text
+            sender.setImage(self.uncheckedImage, forState: .Normal)
+        }
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.view.setNeedsLayout()
+        taskViewController.presentViewController(alert, animated: true, completion: nil)
     }
 }
