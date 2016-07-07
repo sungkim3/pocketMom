@@ -51,7 +51,7 @@ class TaskViewController: UIViewController {
 extension TaskViewController: Setup {
     
     func setup() {
-        self.navigationItem.title = "Task List"
+        self.navigationItem.title = "pocketMom Chores"
     }
     
     func setupAppearance() {

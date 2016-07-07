@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140451671D2EB57800CB1FB3 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140451661D2EB57800CB1FB3 /* NavigationViewController.swift */; };
 		146D6A681D2706E900F920C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146D6A661D2706E900F920C5 /* Main.storyboard */; };
 		146D6A6A1D27159100F920C5 /* NotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D6A691D27159100F920C5 /* NotificationDate.swift */; };
 		146D6A6C1D2C277100F920C5 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D6A6B1D2C277100F920C5 /* TaskManager.swift */; };
@@ -16,14 +17,12 @@
 		148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1485520E1D25B6CD00A7008D /* LaunchScreen.storyboard */; };
 		1485521B1D25B98E00A7008D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485521A1D25B98E00A7008D /* Task.swift */; };
 		148552201D25C82A00A7008D /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485521F1D25C82A00A7008D /* Setup.swift */; };
-		148552231D25FD5000A7008D /* checked_box.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 148552221D25FD5000A7008D /* checked_box.jpeg */; };
-		148552251D25FD5700A7008D /* unchecked_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 148552241D25FD5700A7008D /* unchecked_box.png */; };
 		1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148552291D26000100A7008D /* TaskTableViewCell.swift */; };
 		1485522C1D26000100A7008D /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1485522A1D26000100A7008D /* TaskTableViewCell.xib */; };
-		1485522E1D26CB1F00A7008D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1485522D1D26CB1F00A7008D /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140451661D2EB57800CB1FB3 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		146D6A671D2706E900F920C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		146D6A691D27159100F920C5 /* NotificationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDate.swift; sourceTree = "<group>"; };
 		146D6A6B1D2C277100F920C5 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
@@ -35,11 +34,8 @@
 		148552111D25B6CE00A7008D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1485521A1D25B98E00A7008D /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		1485521F1D25C82A00A7008D /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
-		148552221D25FD5000A7008D /* checked_box.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checked_box.jpeg; sourceTree = "<group>"; };
-		148552241D25FD5700A7008D /* unchecked_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unchecked_box.png; sourceTree = "<group>"; };
 		148552291D26000100A7008D /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		1485522A1D26000100A7008D /* TaskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
-		1485522D1D26CB1F00A7008D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +72,6 @@
 				148552181D25B89900A7008D /* Controller */,
 				1485521C1D25B9B700A7008D /* Model */,
 				148552191D25B8A000A7008D /* View */,
-				148552261D25FD6200A7008D /* Assets */,
 				148552211D25C83000A7008D /* Protocol */,
 			);
 			path = pocketMom;
@@ -94,8 +89,8 @@
 		148552181D25B89900A7008D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1485522D1D26CB1F00A7008D /* SettingsViewController.swift */,
 				148552071D25B6CC00A7008D /* TaskViewController.swift */,
+				140451661D2EB57800CB1FB3 /* NavigationViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -128,15 +123,6 @@
 				1485521F1D25C82A00A7008D /* Setup.swift */,
 			);
 			name = Protocol;
-			sourceTree = "<group>";
-		};
-		148552261D25FD6200A7008D /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				148552221D25FD5000A7008D /* checked_box.jpeg */,
-				148552241D25FD5700A7008D /* unchecked_box.png */,
-			);
-			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,8 +192,6 @@
 				148552101D25B6CD00A7008D /* LaunchScreen.storyboard in Resources */,
 				1485520D1D25B6CD00A7008D /* Assets.xcassets in Resources */,
 				146D6A681D2706E900F920C5 /* Main.storyboard in Resources */,
-				148552251D25FD5700A7008D /* unchecked_box.png in Resources */,
-				148552231D25FD5000A7008D /* checked_box.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,10 +202,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140451671D2EB57800CB1FB3 /* NavigationViewController.swift in Sources */,
 				146D6A6C1D2C277100F920C5 /* TaskManager.swift in Sources */,
 				148552081D25B6CC00A7008D /* TaskViewController.swift in Sources */,
 				1485521B1D25B98E00A7008D /* Task.swift in Sources */,
-				1485522E1D26CB1F00A7008D /* SettingsViewController.swift in Sources */,
 				1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */,
 				148552061D25B6CC00A7008D /* AppDelegate.swift in Sources */,
 				148552201D25C82A00A7008D /* Setup.swift in Sources */,
