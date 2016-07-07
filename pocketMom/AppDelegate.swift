@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             calendar.timeZone = NSTimeZone(abbreviation: "GMT")!
             
             let previousDayComponent = calendar.component(.Day, fromDate: previousDate)
+//            let previousDayComponent = 6
             let currentDayComponent = calendar.component(.Day, fromDate: currentDate)
             
             print("prev saved day : \(previousDayComponent)")

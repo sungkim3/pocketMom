@@ -13,8 +13,10 @@ class NavigationViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let navBarFont = UIFont(name: "ChalkboardSE-Bold", size: 26) ?? UIFont.systemFontOfSize(26)
         self.navigationBar.barStyle = UIBarStyle.Black
         self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.titleTextAttributes = [NSFontAttributeName: navBarFont, NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
 
     override func didReceiveMemoryWarning() {

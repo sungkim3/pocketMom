@@ -3,56 +3,67 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customTaskCell" rowHeight="85" id="KGk-i7-Jjw" customClass="TaskTableViewCell" customModule="pocketMom" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customTaskCell" id="KGk-i7-Jjw" customClass="TaskTableViewCell" customModule="pocketMom" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="405" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="405" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YS-jT-5OI">
+                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7YS-jT-5OI">
                         <rect key="frame" x="8" y="27" width="30" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="dvh-YB-aF1"/>
                             <constraint firstAttribute="height" constant="30" id="hBk-Sj-Nix"/>
                         </constraints>
-                        <state key="normal" image="unchecked_box.png"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="2"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="checkboxSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T3M-tg-lrC"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-8R-9OL">
-                        <rect key="frame" x="376" y="31" width="21" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="21" id="pfc-ua-81I"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Enter Task Here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVK-vF-tue">
+                        <rect key="frame" x="46" y="8" width="351" height="40"/>
+                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Task Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVK-vF-tue">
-                        <rect key="frame" x="59" y="31" width="122" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-8R-9OL">
+                        <rect key="frame" x="46" y="56" width="351" height="20"/>
+                        <attributedString key="attributedText">
+                            <fragment content="This is the counter">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="14" name="ChalkboardSE-Light"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="7YS-jT-5OI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="0Rb-eh-jcL"/>
                     <constraint firstItem="7YS-jT-5OI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="2PW-wQ-ijh"/>
-                    <constraint firstAttribute="bottom" secondItem="7Z2-8R-9OL" secondAttribute="bottom" constant="32" id="30r-6f-6YL"/>
-                    <constraint firstItem="7Z2-8R-9OL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="DVc-Fb-rqk"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="hVK-vF-tue" secondAttribute="bottom" constant="24" id="Fvg-cu-2OD"/>
-                    <constraint firstItem="hVK-vF-tue" firstAttribute="leading" secondItem="7YS-jT-5OI" secondAttribute="trailing" constant="21" id="kAL-KL-cAB"/>
-                    <constraint firstItem="hVK-vF-tue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="23" id="nRy-sx-0zK"/>
-                    <constraint firstAttribute="trailing" secondItem="7Z2-8R-9OL" secondAttribute="trailing" constant="8" id="tyu-2w-76O"/>
+                    <constraint firstItem="hVK-vF-tue" firstAttribute="leading" secondItem="7YS-jT-5OI" secondAttribute="trailing" constant="8" id="5Ur-Ns-8NE"/>
+                    <constraint firstItem="7YS-jT-5OI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6fM-Yd-5mL"/>
+                    <constraint firstAttribute="bottom" secondItem="7Z2-8R-9OL" secondAttribute="bottom" constant="8" id="AqW-wD-mYF"/>
+                    <constraint firstItem="7Z2-8R-9OL" firstAttribute="top" secondItem="hVK-vF-tue" secondAttribute="bottom" constant="8" id="FIi-6l-jaO"/>
+                    <constraint firstItem="hVK-vF-tue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Jbv-H4-Pc8"/>
+                    <constraint firstAttribute="trailing" secondItem="7Z2-8R-9OL" secondAttribute="trailing" constant="8" id="k9j-WG-PxL"/>
+                    <constraint firstAttribute="trailing" secondItem="hVK-vF-tue" secondAttribute="trailing" constant="8" id="vjh-c0-Q31"/>
+                    <constraint firstItem="7Z2-8R-9OL" firstAttribute="leading" secondItem="7YS-jT-5OI" secondAttribute="trailing" constant="8" id="wSO-Zm-Ziu"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="checkBoxButton" destination="7YS-jT-5OI" id="zKK-2m-bxL"/>
                 <outlet property="countLabel" destination="7Z2-8R-9OL" id="ugw-7D-6qD"/>
@@ -61,7 +72,4 @@
             <point key="canvasLocation" x="222.5" y="262.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="unchecked_box.png" width="102" height="102"/>
-    </resources>
 </document>

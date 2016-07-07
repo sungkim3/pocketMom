@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140451671D2EB57800CB1FB3 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140451661D2EB57800CB1FB3 /* NavigationViewController.swift */; };
+		140451691D2EBE0900CB1FB3 /* TaskTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140451681D2EBE0900CB1FB3 /* TaskTableViewCellDelegate.swift */; };
 		146D6A681D2706E900F920C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146D6A661D2706E900F920C5 /* Main.storyboard */; };
 		146D6A6A1D27159100F920C5 /* NotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D6A691D27159100F920C5 /* NotificationDate.swift */; };
 		146D6A6C1D2C277100F920C5 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146D6A6B1D2C277100F920C5 /* TaskManager.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		140451661D2EB57800CB1FB3 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		140451681D2EBE0900CB1FB3 /* TaskTableViewCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		146D6A671D2706E900F920C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		146D6A691D27159100F920C5 /* NotificationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDate.swift; sourceTree = "<group>"; };
 		146D6A6B1D2C277100F920C5 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				1485521F1D25C82A00A7008D /* Setup.swift */,
+				140451681D2EBE0900CB1FB3 /* TaskTableViewCellDelegate.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				146D6A6C1D2C277100F920C5 /* TaskManager.swift in Sources */,
 				148552081D25B6CC00A7008D /* TaskViewController.swift in Sources */,
 				1485521B1D25B98E00A7008D /* Task.swift in Sources */,
+				140451691D2EBE0900CB1FB3 /* TaskTableViewCellDelegate.swift in Sources */,
 				1485522B1D26000100A7008D /* TaskTableViewCell.swift in Sources */,
 				148552061D25B6CC00A7008D /* AppDelegate.swift in Sources */,
 				148552201D25C82A00A7008D /* Setup.swift in Sources */,
