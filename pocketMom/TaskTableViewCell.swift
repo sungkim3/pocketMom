@@ -13,28 +13,24 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
-    let uncheckedImage = UIImage(named: "unchecked_box")
-    let checkedImage = UIImage(named: "checked_box.jpeg")
+
+    let checkmark = UIImage(named: "checkmark")
+
     
+    weak var delegate: TaskTableViewCellDelegate?
     
     var task: Task! {
         didSet {
             self.taskLabel.text = self.task.text
-            
-            if self.task.counter == 0 {
-                self.countLabel.hidden = true
-            } else {
-                self.countLabel.hidden = false
-                self.countLabel.text = String(self.task.counter)
-            }
+            self.countLabel.text = "Days slacked off: \(self.task.counter)"
             
             if self.task.completed == false {
-                checkBoxButton.setImage(uncheckedImage, forState: .Normal)
+                checkBoxButton.setImage(nil, forState: .Normal)
             } else {
                 let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: self.task.text)
                 attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
                 self.taskLabel.attributedText = attributeString
-                checkBoxButton.setImage(checkedImage, forState: .Normal)
+                checkBoxButton.setImage(checkmark, forState: .Normal)
             }
         }
     }
@@ -49,28 +45,35 @@ class TaskTableViewCell: UITableViewCell {
     
     
     @IBAction func checkboxSelected(sender: UIButton) {
+        
         if self.task.completed == false {
             self.task.completed = true
-            sender.setImage(checkedImage, forState: .Normal)
+            sender.setImage(checkmark, forState: .Normal)
             let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: self.task.text)
             attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
             self.taskLabel.attributedText = attributeString
         } else {
             self.task.completed = false
             self.taskLabel.text = self.task.text
-            sender.setImage(uncheckedImage, forState: .Normal)
+            sender.setImage(nil, forState: .Normal)
         }
         
         guard let taskViewController = self.window?.rootViewController?.childViewControllers.first as? TaskViewController else { return }
-        let alert = UIAlertController(title: nil, message: "Did you finish your task?", preferredStyle: .Alert)
+        
+        let alert = UIAlertController(title: nil, message: "Did you really finish this chore?", preferredStyle: .Alert)
+        
         let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) { (action) in
-            TaskManager.shared.tasks.removeAtIndex(TaskManager.shared.tasks.indexOf(self.task)!)
-            taskViewController.update()
+            guard let delegate = self.delegate else { return }
+            if let index = TaskManager.shared.tasks.indexOf(self.task) {
+                TaskManager.shared.tasks.removeAtIndex(index)
+                delegate.didFinishDeletion(NSIndexPath(forRow: index, inSection: 0))
+            }
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
             self.task.completed = false
             self.taskLabel.text = self.task.text
-            sender.setImage(self.uncheckedImage, forState: .Normal)
+            sender.setImage(nil, forState: .Normal)
         }
         
         alert.addAction(deleteAction)

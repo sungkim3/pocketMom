@@ -20,6 +20,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="77K-xz-8sn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="5D2-SU-Vjf"/>
                                 </connections>
@@ -30,11 +31,35 @@
                             <constraint firstItem="77K-xz-8sn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="3SU-NU-XIe"/>
                             <constraint firstAttribute="trailing" secondItem="77K-xz-8sn" secondAttribute="trailing" id="CNo-zV-VOT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="77K-xz-8sn" secondAttribute="bottom" id="PX8-zH-gfr"/>
+                            <constraint firstItem="77K-xz-8sn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eCm-o2-bNE"/>
+                            <constraint firstItem="77K-xz-8sn" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="h4K-K3-Omz"/>
                             <constraint firstItem="77K-xz-8sn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="meR-0q-vzt"/>
+                            <constraint firstAttribute="trailing" secondItem="77K-xz-8sn" secondAttribute="trailing" id="nWA-wm-z85"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="77K-xz-8sn" secondAttribute="bottom" id="y1x-2Q-v3D"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="eCm-o2-bNE"/>
+                                <exclude reference="h4K-K3-Omz"/>
+                                <exclude reference="nWA-wm-z85"/>
+                                <exclude reference="y1x-2Q-v3D"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="subviews">
+                                <include reference="77K-xz-8sn"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="eCm-o2-bNE"/>
+                                <include reference="h4K-K3-Omz"/>
+                                <include reference="nWA-wm-z85"/>
+                                <include reference="y1x-2Q-v3D"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="xg3-qW-dnB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xjA-fL-Cr6">
+                            <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="addButtonSelected:" destination="BYZ-38-t0r" id="ZgL-C1-0Jf"/>
                             </connections>
@@ -48,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="1092" y="337"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="m1k-JD-Mwd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rMc-T5-BPL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="rMc-T5-BPL" customClass="NavigationViewController" customModule="pocketMom" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MNW-Uz-SpK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

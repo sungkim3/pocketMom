@@ -11,10 +11,11 @@ import UIKit
 class TaskViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
+        self.setupAppearance()
         self.setupTableView()
     }
 
@@ -23,7 +24,7 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func addButtonSelected(sender: AnyObject) {
-        let alertController = UIAlertController(title: "New Task", message: "Enter new Task", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Add New Chore", message: "You have more to do? Shocking.", preferredStyle: .Alert)
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.text = ""
@@ -48,14 +49,24 @@ class TaskViewController: UIViewController {
     }
 }
 
-extension TaskViewController: Setup {
+extension TaskViewController: Setup, TaskTableViewCellDelegate {
     
     func setup() {
-        self.navigationItem.title = "Task List"
+        self.navigationItem.title = "pocketMom Chores"
+        self.tableView.allowsSelection = false
     }
     
     func setupAppearance() {
-        //
+        if TaskManager.shared.tasks.count == 0 {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            self.tableView.separatorColor = UIColor.clearColor()
+        } else {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            self.tableView.separatorColor = UIColor.grayColor()
+        }
+        self.tableView.reloadData()
+        
+        
     }
     
     func setupTableView() {
@@ -67,8 +78,11 @@ extension TaskViewController: Setup {
         self.tableView.reloadData()
     }
     
-    func update() {
-        self.tableView.reloadData()
+    func didFinishDeletion(indexPath: NSIndexPath) {
+        var indexPathArray = [NSIndexPath]()
+        indexPathArray.append(indexPath)
+        self.tableView.deleteRowsAtIndexPaths(indexPathArray, withRowAnimation: UITableViewRowAnimation.Left)
+        indexPathArray.removeFirst()
     }
 }
 
@@ -81,6 +95,18 @@ extension TaskViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customTaskCell", forIndexPath: indexPath) as! TaskTableViewCell
         cell.task = TaskManager.shared.tasks[indexPath.row]
+        cell.layoutMargins = UIEdgeInsetsZero
+        cell.separatorInset = UIEdgeInsetsZero
+        if cell.task.counter == 0 {
+            cell.backgroundColor = UIColor.cyanColor()
+        } else if cell.task.counter < 3 {
+            cell.backgroundColor = UIColor.yellowColor()
+        } else if cell.task.counter < 5 {
+            cell.backgroundColor = UIColor.orangeColor()
+        } else {
+            cell.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.4)
+        }
+        cell.delegate = self
         return cell
     }
 }

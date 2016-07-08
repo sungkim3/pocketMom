@@ -29,15 +29,6 @@ class Task: NSObject, NSCoding {
         }
     }
     
-    func getDay (date: NSDate) -> Int {
-
-        let calendar = NSCalendar.currentCalendar()
-        let dayComponent = calendar.component(.Day, fromDate: date)
-        return dayComponent
-//        let minuteComponent = calendar.component(.Minute, fromDate: date)
-//        return minuteComponent
-    }
-    
     //MARK: NSCODING
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(text, forKey: TaskKey.textKey)

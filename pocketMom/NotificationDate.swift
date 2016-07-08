@@ -10,113 +10,122 @@ import UIKit
 
 class NotificationDate {
     
-    class func composeStartEndNotificationDate() {
-        //current date
-        let date = NSDate()
-        //current calendar
-        let calendar = NSCalendar.currentCalendar()
-        //needs to fire today or tomorrow
-        let dayComponent = calendar.component(.Day, fromDate: date)
-        //use hour time to determine which day to fire
-        let hourComponent = calendar.component(.Hour, fromDate: date)
-        
-        //custom NSDate for fireDate
-        let dateComp = NSDateComponents()
-        //fire start local notification at 6AM
-        dateComp.hour = 6
-        //fire end local notification at 10PM
-        let endDateComp = NSDateComponents()
-        endDateComp.hour = 22
-        
-        //fire tomorrow if current hour is greater than 6AM
-        if hourComponent > 6 {
-            dateComp.day = dayComponent.successor()
-            endDateComp.day = dayComponent.successor()
-        }
-
-        let fireDate = calendar.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions(rawValue: 0))
-        let endFireDate = calendar.dateByAddingComponents(endDateComp, toDate: date, options: NSCalendarOptions(rawValue: 0))
-        
-        let startNotification = UILocalNotification()
-        startNotification.alertBody = "Wake yo ass up and lets get this day started!"
-        startNotification.timeZone = NSTimeZone.localTimeZone()
-        startNotification.fireDate = fireDate
-//        startNotification.fireDate = NSDate().dateByAddingTimeInterval(10)
-
-        
-        let endNotification = UILocalNotification()
-        endNotification.alertBody = "What did you get done?"
-        endNotification.timeZone = NSTimeZone.localTimeZone()
-        endNotification.fireDate = endFireDate
-//        endNotification.fireDate = NSDate().dateByAddingTimeInterval(20)
-
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(startNotification)
-        UIApplication.sharedApplication().scheduleLocalNotification(endNotification)
-    }
-    
-    class func setNotifications() {
-        var highestCount = 0
-        for task in TaskManager.shared.tasks {
-            if highestCount > Int(task.counter) {
-                highestCount = Int(task.counter)
-            }
-        }
-        switch highestCount {
-        //start and end notifications only
-        case 0: NotificationDate.composeStartEndNotificationDate()
-        //make one notification at 2PM
-        case 1...2: NotificationDate.composeStartEndNotificationDate()
-            NotificationDate.composeNotification(14)
-        //make three notifications at 10AM and 2PM and 6PM
-        case 3...4: NotificationDate.composeStartEndNotificationDate()
-            NotificationDate.composeNotification(10)
-            NotificationDate.composeNotification(14)
-            NotificationDate.composeNotification(18)
-        //make seven notifications at 8AM, 10AM, 12PM, 2PM, 4PM, 6PM, and 8PM
-        case 4...6: NotificationDate.composeStartEndNotificationDate()
-            NotificationDate.composeNotification(8)
-            NotificationDate.composeNotification(10)
-            NotificationDate.composeNotification(12)
-            NotificationDate.composeNotification(14)
-            NotificationDate.composeNotification(16)
-            NotificationDate.composeNotification(18)
-            NotificationDate.composeNotification(20)
-        //make fifteen notifications at every hour
-        default: NotificationDate.composeStartEndNotificationDate()
-            NotificationDate.composeNotification(7)
-            NotificationDate.composeNotification(8)
-            NotificationDate.composeNotification(9)
-            NotificationDate.composeNotification(10)
-            NotificationDate.composeNotification(11)
-            NotificationDate.composeNotification(12)
-            NotificationDate.composeNotification(13)
-            NotificationDate.composeNotification(14)
-            NotificationDate.composeNotification(15)
-            NotificationDate.composeNotification(16)
-            NotificationDate.composeNotification(17)
-            NotificationDate.composeNotification(18)
-            NotificationDate.composeNotification(19)
-            NotificationDate.composeNotification(20)
-            NotificationDate.composeNotification(21)
-        }
-    }
-    
     class func composeNotification(hour: Int) {
-        //grab current date, access calendar, create a custom hour
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let dateComp = NSDateComponents()
-        dateComp.hour = hour
-        //set fireDate to the current date with the custom hour
-        let fireDate = calendar.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions(rawValue: 0))
-        //create new notification with specified parameters
-        let notification = UILocalNotification()
-        notification.alertBody = "Did you accomplish anything yet? Check your list."
-        notification.timeZone = NSTimeZone.localTimeZone()
+        guard let fireDate = NotificationDate.composeFireDate(hour) else { return }
+        
+        let notification = NotificationDate.composeNotificationBody("Did you accomplish anything yet? Check your list.")
         notification.fireDate = fireDate
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    class func composeStartNotification() {
+        guard let startFireDate = NotificationDate.composeFireDate(6) else { return }
+        
+        let startNotification = NotificationDate.composeNotificationBody("Wake yo ass up and lets get this day started!")
+        startNotification.fireDate = startFireDate
+        print("start firedate is : \(startNotification.fireDate)")
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(startNotification)
+    }
+    
+    class func composeEndNotification() {
+        guard let endFireDate = NotificationDate.composeFireDate(22) else { return }
+
+        let endNotification = NotificationDate.composeNotificationBody("What did you get done?")
+        endNotification.fireDate = endFireDate
+        print("end firedate is : \(endNotification.fireDate)")
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(endNotification)
+    }
+    
+    class func composeNotificationBody(alertBody: String) -> UILocalNotification{
+        let notification = UILocalNotification()
+        notification.alertBody = alertBody
+        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.soundName = UILocalNotificationDefaultSoundName
+        return notification
+    }
+    
+    class func composeFireDate(hour: Int) -> NSDate? {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        calendar.locale = NSLocale.currentLocale()
+        calendar.timeZone = NSTimeZone.localTimeZone()
+        
+        let yearComponent = calendar.component(.Year, fromDate: date)
+        let monthComponent = calendar.component(.Month, fromDate: date)
+        let dayComponent = calendar.component(.Day, fromDate: date)
+//        let hourComponent = calendar.component(.Hour, fromDate: date)
+        
+        let dateComp = NSDateComponents()
+        dateComp.year = yearComponent
+        dateComp.month = monthComponent
+        dateComp.day = dayComponent
+        dateComp.hour = hour
+        dateComp.minute = 53
+        dateComp.second = 0
+        
+//        if hourComponent > 6 {
+//            dateComp.day = dayComponent.successor()
+//        }
+        
+        if let fireDate = calendar.dateFromComponents(dateComp) {
+            return fireDate
+        }
+        return nil
+    }
+    
+    class func setNotifications() {
+        
+        var highestCount = 0
+        for task in TaskManager.shared.tasks {
+            if highestCount < Int(task.counter) {
+                highestCount = Int(task.counter)
+            }
+        }
+
+        switch highestCount {
+        //start and end notifications only
+        case 0:
+            NotificationDate.composeStartNotification()
+            NotificationDate.composeEndNotification()
+            print("queuing 2 notifications")
+        //make one notification at 2PM            
+        case 1...2:
+            NotificationDate.composeStartNotification()
+            NotificationDate.composeNotification(14)
+            NotificationDate.composeEndNotification()
+            print("queuing 3 notifications")
+        //make three notifications at 10AM and 2PM and 6PM
+        case 3...4:
+            NotificationDate.composeStartNotification()
+            NotificationDate.composeNotification(10)
+            NotificationDate.composeNotification(14)
+            NotificationDate.composeNotification(18)
+            NotificationDate.composeEndNotification()
+            print("queuing 5 notifications")
+        //make seven notifications at 8AM, 10AM, 12PM, 2PM, 4PM, 6PM, and 8PM
+        case 4...6:
+            NotificationDate.composeStartNotification()
+            NotificationDate.composeNotification(8)
+            NotificationDate.composeNotification(10)
+            NotificationDate.composeNotification(12)
+            NotificationDate.composeNotification(14)
+            NotificationDate.composeNotification(16)
+            NotificationDate.composeNotification(18)
+            NotificationDate.composeNotification(20)
+            NotificationDate.composeEndNotification()
+            print("queuing 9 notifications")
+        //make fifteen notifications at every hour
+        default:
+            NotificationDate.composeStartNotification()
+            for index in 7...21 {
+                NotificationDate.composeNotification(index)
+            }
+            NotificationDate.composeEndNotification()
+            print("queuing 17 notifications")
+        }
+    }
+
 }
