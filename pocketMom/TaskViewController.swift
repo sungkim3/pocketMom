@@ -65,6 +65,8 @@ extension TaskViewController: Setup, TaskTableViewCellDelegate {
             self.tableView.separatorColor = UIColor.grayColor()
         }
         self.tableView.reloadData()
+        
+        
     }
     
     func setupTableView() {

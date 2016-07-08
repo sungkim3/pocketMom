@@ -13,8 +13,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
-    let uncheckedImage = UIImage(named: "unchecked_box")
-    let checkedImage = UIImage(named: "checked_box")
+
     let checkmark = UIImage(named: "checkmark")
 
     
@@ -23,13 +22,7 @@ class TaskTableViewCell: UITableViewCell {
     var task: Task! {
         didSet {
             self.taskLabel.text = self.task.text
-            
-//            if self.task.counter == 0 {
-//                self.countLabel.hidden = true
-//            } else {
-//                self.countLabel.hidden = false
-                self.countLabel.text = "Days slacked off: \(self.task.counter)"
-//            }
+            self.countLabel.text = "Days slacked off: \(self.task.counter)"
             
             if self.task.completed == false {
                 checkBoxButton.setImage(nil, forState: .Normal)
@@ -63,7 +56,6 @@ class TaskTableViewCell: UITableViewCell {
             self.task.completed = false
             self.taskLabel.text = self.task.text
             sender.setImage(nil, forState: .Normal)
-//            sender.setImage(uncheckedImage, forState: .Normal)
         }
         
         guard let taskViewController = self.window?.rootViewController?.childViewControllers.first as? TaskViewController else { return }
@@ -82,7 +74,6 @@ class TaskTableViewCell: UITableViewCell {
             self.task.completed = false
             self.taskLabel.text = self.task.text
             sender.setImage(nil, forState: .Normal)
-//            sender.setImage(self.uncheckedImage, forState: .Normal)
         }
         
         alert.addAction(deleteAction)

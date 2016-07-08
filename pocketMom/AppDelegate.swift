@@ -14,12 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil))
-        NotificationDate.composeStartEndNotificationDate()
+        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil))
+        NotificationDate.composeStartNotification()
+        NotificationDate.composeEndNotification()
         
         //every 3 hours
         application.setMinimumBackgroundFetchInterval(60*60*3)
-//        application.setMinimumBackgroundFetchInterval(60*15)
         return true
     }
     
@@ -30,28 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let currentDate = NSDate()
             let calendar = NSCalendar.currentCalendar()
             calendar.locale = NSLocale.currentLocale()
-            calendar.timeZone = NSTimeZone(abbreviation: "GMT")!
+            calendar.timeZone = NSTimeZone.localTimeZone()
             
-            let previousDayComponent = calendar.component(.Day, fromDate: previousDate)
-//            let previousDayComponent = 6
+//            let previousDayComponent = calendar.component(.Day, fromDate: previousDate)
+            let previousDayComponent = 6
             let currentDayComponent = calendar.component(.Day, fromDate: currentDate)
             
             print("prev saved day : \(previousDayComponent)")
             print("curr saved day : \(currentDayComponent)")
-//            let minuteComponent = calendar.component(.Minute, fromDate: previousDate)
-//            let currentMinComponent = calendar.component(.Minute, fromDate: currentDate)
-            
-            //moved into the next day
-//            if minuteComponent != currentMinComponent {
-//                //cancel all scheduled localnotifications
-//                application.cancelAllLocalNotifications()
-//                //schedule notifications based on task object counter property
-//                NotificationDate.setNotifications()
-//                let previousDate = currentDate
-//                NSUserDefaults.standardUserDefaults().setObject(previousDate, forKey: "previousDate")
-//            }
+
             if previousDayComponent != currentDayComponent {
                 application.cancelAllLocalNotifications()
+                print("cancelled all previously scheduled notifications")
                 NotificationDate.setNotifications()
                 let previousDate = currentDate
                 NSUserDefaults.standardUserDefaults().setObject(previousDate, forKey: "previousDate")
@@ -70,9 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         let currentDate = NSDate()
         let calendar = NSCalendar.currentCalendar()
-//        let minuteComponent = calendar.component(.Minute, fromDate: currentDate)
-//        print("Current Minute for Task Counter is : \(minuteComponent)")
-        //check previous saved date and todays date (comparing days)
+
         for task in TaskManager.shared.tasks {
             if let date = task.createdAt {
                 print("the createdAt Date: \(date)")
@@ -81,11 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let flags = NSCalendarUnit.Day
                 let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
                 task.counter = Int32(components.day)
-                
-//                let flags = NSCalendarUnit.Minute
-//                let components = calendar.components(flags, fromDate: date, toDate: currentDate, options: [])
-//                print(components.minute)
-//                task.counter = Int32(components.minute)
                 
                 print("task counter is : \(task.counter)")
             }
